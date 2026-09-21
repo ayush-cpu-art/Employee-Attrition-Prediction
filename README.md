@@ -1,100 +1,90 @@
-# Employee Attrition Prediction
+# 👥 Employee Attrition Prediction
 
-A machine learning classification project that predicts whether an employee is likely to leave an organization using HR analytics data.
+A machine learning classification project that predicts employee attrition using Decision Tree and Random Forest classifiers on the IBM HR Analytics Employee Attrition dataset.
 
-The project explores employee-related features, performs preprocessing and exploratory analysis, and compares Decision Tree and Random Forest classifiers using multiple evaluation metrics.
+## 🎯 Objective
 
----
-
-## 📌 Overview
-
-Employee attrition can affect productivity, recruitment costs, and workforce stability.
-
-This project uses historical HR data to build classification models that predict employee attrition based on factors such as:
-
-- Age
-- Job satisfaction
-- Monthly income
-- Job level
-- Work-life balance
-- Overtime
-- Distance from home
-- Years at company
-- Job role
-- Environment satisfaction
-- And other employee-related attributes
-
-The project focuses on understanding the data, preparing it for machine learning, training classification models, and evaluating their performance.
-
----
-
-## 🎯 Problem Statement
-
-Build a machine learning model that predicts whether an employee will leave the organization based on available HR attributes.
-
-**Target variable:** `Attrition`
-
-- `0` → No
-- `1` → Yes
-
----
+The objective of this project is to predict whether an employee is likely to leave the organization and compare the performance of Decision Tree and Random Forest classification models.
 
 ## 📊 Dataset
 
-The project uses the IBM HR Analytics Employee Attrition dataset.
+**IBM HR Analytics Employee Attrition & Performance Dataset**
 
-### Dataset characteristics
+The dataset contains **1,470 employee records** with **35 original features** related to employee demographics, job characteristics, compensation, satisfaction, and other HR attributes.
 
-- **Records:** 1,470
-- **Original features:** 35
-- **Target:** Attrition
-- **Missing values:** None
+### Target Variable
 
-### Class distribution
+`Attrition`
 
-| Attrition | Count |
-|-----------|------:|
-| No | 1,233 |
-| Yes | 237 |
+| Value | Meaning |
+|---|---|
+| `Yes` | Employee left the organization |
+| `No` | Employee stayed |
 
-The dataset is imbalanced, with substantially more employees who did not leave than employees who did.
+The dataset contains:
 
-Therefore, accuracy is considered alongside precision, recall, and F1-score.
+- 1,233 employees who did not leave
+- 237 employees who left
 
----
+This class imbalance makes metrics such as Precision, Recall, and F1-Score important when evaluating the models.
 
-## 🔧 Data Preprocessing
+## 🛠️ Libraries Used
 
-The following preprocessing steps were performed:
+- Python
+- Pandas
+- NumPy
+- Matplotlib
+- Seaborn
+- Scikit-learn
 
-1. Loaded the dataset using Pandas.
-2. Inspected dataset structure and statistics.
-3. Checked for missing values.
-4. Removed constant or unnecessary columns:
-   - `EmployeeCount`
-   - `EmployeeNumber`
-   - `Over18`
-   - `StandardHours`
-5. Encoded categorical variables using `LabelEncoder`.
-6. Separated features and target variable.
-7. Split the data into training and testing sets using an 80/20 stratified split.
+## ⚙️ Methodology
 
-### Final dataset
+1. Load the IBM HR Analytics dataset.
+2. Perform exploratory data understanding.
+3. Check for missing values.
+4. Remove constant and identifier columns.
+5. Encode categorical variables.
+6. Split the dataset using an 80/20 stratified train-test split.
+7. Train Decision Tree and Random Forest classifiers.
+8. Evaluate both models using Accuracy, Precision, Recall, and F1-Score.
+9. Analyze confusion matrices.
+10. Visualize Random Forest feature importance.
 
-After removing the unnecessary columns:
+## 🤖 Models
 
-- **Features:** 30
-- **Target:** Attrition
+### Decision Tree
 
----
+A Decision Tree classifier was trained to predict employee attrition based on the available HR features.
 
-## 🤖 Machine Learning Models
+### Random Forest
 
-Two classification algorithms were implemented:
+A Random Forest classifier was trained using multiple decision trees to improve predictive performance and reduce dependence on a single tree.
 
-### 1. Decision Tree Classifier
+## 📈 Model Comparison
 
-A single decision tree was trained using:
+| Metric | Decision Tree | Random Forest |
+|---|---:|---:|
+| Accuracy | **78.23%** | **84.35%** |
+| Precision | **31.91%** | **54.55%** |
+| Recall | **31.91%** | **12.77%** |
+| F1-Score | **31.91%** | **20.69%** |
 
-```python
-DecisionTreeClassifier(random_state=42)
+## 🔍 Observations
+
+- Random Forest achieved higher overall **accuracy (84.35%)** and **precision (54.55%)**.
+- Decision Tree achieved higher **recall (31.91%)** and **F1-score (31.91%)**.
+- The dataset contains substantially more employees who did not leave than employees who left.
+- Because of this class imbalance, accuracy alone is not sufficient for evaluating attrition prediction.
+- Confusion matrices provide additional insight into how the models identify employees who experienced attrition.
+- Random Forest feature importance was used to identify features that contributed most to its predictions.
+
+## 📁 Project Structure
+
+```text
+Employee-Attrition-Prediction/
+├── images/
+├── .gitignore
+├── employee_attrition_prediction.ipynb
+├── README.md
+├── requirements.txt
+└── WA_Fn-UseC_-HR-Employee-Attrition.csv
